@@ -17,13 +17,18 @@ class LuzController < OSX::NSObject
   def awakeFromNib
     activateStatusMenu()
     @callback = lambda { |p,t,e,r|
+      # Activate it on Control-MouseButon3
       if (t == KCGEventOtherMouseDown &&
         CGEventGetFlags(e) & KCGEventFlagMaskControl == KCGEventFlagMaskControl)
         toggle(self)
         return
       end
       if @light_view.enabled
+        # Only redraw the light with a little margin, not all the screen
+        # because it is very slow
         @light_view.setNeedsDisplayInRect @light_view.light_bounds
+        # all the screen would be done with:
+        # @light_view.setNeedsDisplay true
       end
       e 
     }
@@ -43,7 +48,11 @@ class LuzController < OSX::NSObject
   end
   
   ib_action :change_blur do |sender|
-    @light_view.blur = @blur.floatValue
+    if @size.floatValue < 50
+      @light_view.blur = @blur.floatValue
+    else
+      @light_view.blur = @blur.floatValue/2
+    end
     @blur_lbl.setStringValue "#{(@blur.intValue)} %"
     @light_view.setNeedsDisplay true
   end

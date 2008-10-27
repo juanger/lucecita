@@ -8,13 +8,13 @@
 
 require 'osx/cocoa'
 include OSX
-#require_framework 'CoreGraphics'
 
 class LuzView <  OSX::NSView
 
   attr_accessor :center, :rect, :radius, :blur
   attr_accessor :transparency, :enabled
-  OFFSET = 35
+  OFFSET = 25.0
+  
 
   def initialize
     @radius = 70
@@ -25,16 +25,15 @@ class LuzView <  OSX::NSView
 
   def drawRect(rect)
     if @enabled
-
-    NSGraphicsContext.currentContext.setCompositingOperation NSCompositeSourceOut
-    context = NSGraphicsContext.currentContext.graphicsPort
-    #CGContextSetBlendMode(context, KCGBlendModeColorDodge)
-    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, @transparency)
-    CGContextFillRect(context, rect)
-    
-    @center = NSEvent.mouseLocation    
-    @rect = NSRect.new(@center.x - @radius, @center.y - @radius, @radius*2, @radius*2) 
-    drawLight
+      context = NSGraphicsContext.currentContext.graphicsPort
+      CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, @transparency)
+      CGContextFillRect(context, rect)
+      CGContextSetBlendMode(context, KCGBlendModeSourceOut)
+      
+      @center = NSEvent.mouseLocation
+      # Get the area where the light will be drawn
+      @rect = NSRect.new(@center.x - @radius, @center.y - @radius, @radius*2, @radius*2) 
+      drawLight
     end
   end
   
@@ -44,25 +43,26 @@ class LuzView <  OSX::NSView
     CGContextSetLineWidth(context, 0)
     
     CGContextSaveGState(context)
+    # For the blur effect, the trick is draw a shadow far from the circle
+    # Show shadow below the circle and in the @rect
+    CGContextSetShadow(context, CGSizeMake(0, - @radius*2 - OFFSET*4), @blur)
     
-    CGContextSetShadow(context, CGSizeMake(0, -@radius*2 - OFFSET), @blur)
-    
-    CGContextSetRGBFillColor(context, 1, 1, 1, 1)
-    CGContextClipToRect(context, light_bounds)     
+    # Only draw the area of the shadow plus a margin
+    CGContextClipToRect(context, light_bounds)
+    # Draw the ellipse in the hidden rect
     CGContextAddEllipseInRect(context, fake_rect())
     CGContextDrawPath(context, KCGPathFill)   
-    
     CGContextRestoreGState(context)
   end
 
   def fake_rect
     rect = @rect.clone
-    rect.y += @radius*2 + OFFSET
+    rect.y += @radius*2 + OFFSET*4
     rect
   end
 
   def light_bounds
-    NSInsetRect(@rect, -OFFSET, -OFFSET)
+    NSInsetRect(@rect, -OFFSET*2, -OFFSET*2)
   end
 
 end

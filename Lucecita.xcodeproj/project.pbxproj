@@ -6,6 +6,21 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		217D7BE50EB4DEAD00DE46E8 /* Package */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 217D7BEB0EB4DF0E00DE46E8 /* Build configuration list for PBXAggregateTarget "Package" */;
+			buildPhases = (
+				217D7BE40EB4DEAD00DE46E8 /* ShellScript */,
+			);
+			dependencies = (
+				217D7BE90EB4DEBC00DE46E8 /* PBXTargetDependency */,
+			);
+			name = Package;
+			productName = Package;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		21AE3DF50E3489F700634CF8 /* LuzController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21AE3DF40E3489F700634CF8 /* LuzController.rb */; };
 		21C0132E0E355B7700CBCD88 /* Lucecita.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C0132D0E355B7700CBCD88 /* Lucecita.png */; };
@@ -18,6 +33,16 @@
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		217D7BE80EB4DEBC00DE46E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DDCA7030ACC9A6100E082CE /* Lucecita */;
+			remoteInfo = Lucecita;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -52,6 +77,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				21DBA4760E329AA100A213A3 /* LuzView.rb */,
+				21AE3DF40E3489F700634CF8 /* LuzController.rb */,
+				21DBA4970E32A2EF00A213A3 /* DarkWindow.rb */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -108,11 +136,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				21AE3DF40E3489F700634CF8 /* LuzController.rb */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				21DBA4760E329AA100A213A3 /* LuzView.rb */,
-				21DBA4970E32A2EF00A213A3 /* DarkWindow.rb */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -171,6 +196,7 @@
 			projectRoot = "";
 			targets = (
 				4DDCA7030ACC9A6100E082CE /* Lucecita */,
+				217D7BE50EB4DEAD00DE46E8 /* Package */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +218,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		217D7BE40EB4DEAD00DE46E8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(CONFIGURATION_BUILD_DIR)/$(WRAPPER_NAME)",
+			);
+			outputPaths = (
+				"$(SRCROOT)/$(PROJECT_NAME).dmg",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/ruby;
+			shellScript = "image_name = \"#{ENV['PROJECT_NAME']}.dmg\"\nif File.exists? image_name\n\tsystem(\"rm \\\"#{image_name}\\\"\")\nend\nsystem(\"hdiutil create -srcfolder \\'#{ENV['CONFIGURATION_BUILD_DIR']}/Lucecita.app\\' -volname #{ENV['PROJECT_NAME']} \\'#{image_name}\\'\")\nsystem(\"say build done\")";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4DDCA7090ACC9A6100E082CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -202,6 +246,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		217D7BE90EB4DEBC00DE46E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4DDCA7030ACC9A6100E082CE /* Lucecita */;
+			targetProxy = 217D7BE80EB4DEBC00DE46E8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -223,6 +275,27 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		217D7BE60EB4DEAD00DE46E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Package;
+			};
+			name = Debug;
+		};
+		217D7BE70EB4DEAD00DE46E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Package;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		4D7A7B580ABF745500C2D4C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -282,6 +355,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		217D7BEB0EB4DF0E00DE46E8 /* Build configuration list for PBXAggregateTarget "Package" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				217D7BE60EB4DEAD00DE46E8 /* Debug */,
+				217D7BE70EB4DEAD00DE46E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4D7A7B570ABF745500C2D4C0 /* Build configuration list for PBXProject "Lucecita" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
