@@ -32,6 +32,9 @@ class LuzController < OSX::NSObject
       end
       e 
     }
+	OSX::NSApp.register_hotkey("control+option+command+\\") do
+		toggle()
+	end
     start_tapping()
   end
   

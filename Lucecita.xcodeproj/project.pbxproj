@@ -26,6 +26,8 @@
 		21C0132E0E355B7700CBCD88 /* Lucecita.png in Resources */ = {isa = PBXBuildFile; fileRef = 21C0132D0E355B7700CBCD88 /* Lucecita.png */; };
 		21DBA4770E329AA100A213A3 /* LuzView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21DBA4760E329AA100A213A3 /* LuzView.rb */; };
 		21DBA4980E32A2EF00A213A3 /* DarkWindow.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21DBA4970E32A2EF00A213A3 /* DarkWindow.rb */; };
+		3439DD3C0F2D0B80008841A6 /* hotkey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3439DD3B0F2D0B80008841A6 /* hotkey.rb */; };
+		3439DD460F2D0D78008841A6 /* osxhotkey.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3439DD450F2D0D78008841A6 /* osxhotkey.bundle */; };
 		4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = E8F5E25803AEB7C803A81C6F /* rb_main.rb */; };
@@ -39,7 +41,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4DDCA7030ACC9A6100E082CE /* Lucecita */;
+			remoteGlobalIDString = 4DDCA7030ACC9A6100E082CE;
 			remoteInfo = Lucecita;
 		};
 /* End PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* untitled.rb */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = untitled.rb; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3439DD3B0F2D0B80008841A6 /* hotkey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = hotkey.rb; sourceTree = "<group>"; };
+		3439DD450F2D0D78008841A6 /* osxhotkey.bundle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = osxhotkey.bundle; sourceTree = "<group>"; };
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDCA7120ACC9A6100E082CE /* Lucecita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lucecita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /System/Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
@@ -77,6 +81,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3439DD3A0F2D0B80008841A6 /* osx */,
 				21DBA4760E329AA100A213A3 /* LuzView.rb */,
 				21AE3DF40E3489F700634CF8 /* LuzController.rb */,
 				21DBA4970E32A2EF00A213A3 /* DarkWindow.rb */,
@@ -145,10 +150,19 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3439DD450F2D0D78008841A6 /* osxhotkey.bundle */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3439DD3A0F2D0B80008841A6 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				3439DD3B0F2D0B80008841A6 /* hotkey.rb */,
+			);
+			path = osx;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +227,8 @@
 				21DBA4980E32A2EF00A213A3 /* DarkWindow.rb in Resources */,
 				21AE3DF50E3489F700634CF8 /* LuzController.rb in Resources */,
 				21C0132E0E355B7700CBCD88 /* Lucecita.png in Resources */,
+				3439DD3C0F2D0B80008841A6 /* hotkey.rb in Resources */,
+				3439DD460F2D0D78008841A6 /* osxhotkey.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
