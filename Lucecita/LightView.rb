@@ -1,28 +1,24 @@
 #
-#  LuzView.rb
+#  LightView.rb
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 7/19/08.
-#  Copyright (c) 2008 UNAM. All rights reserved.
+#  Copyright (c) 2008-2010 UNAM. All rights reserved.
 #
 
-require 'osx/cocoa'
-include OSX
-
-class LuzView <  OSX::NSView
-
+class LightView <  NSView
+  
   attr_accessor :center, :rect, :radius, :blur
   attr_accessor :transparency, :enabled
   OFFSET = 25.0
   
-
-  def initialize
+  def awakeFromNib
     @radius = 70
     @transparency = 0.5
     @blur = 20
-    @enabled = true
+    @enabled = false
   end
-
+  
   def drawRect(rect)
     if @enabled
       context = NSGraphicsContext.currentContext.graphicsPort
@@ -32,7 +28,7 @@ class LuzView <  OSX::NSView
       
       @center = NSEvent.mouseLocation
       # Get the area where the light will be drawn
-      @rect = NSRect.new(@center.x - @radius, @center.y - @radius, @radius*2, @radius*2) 
+      @rect = NSMakeRect(@center.x - @radius, @center.y - @radius, @radius*2, @radius*2) 
       drawLight
     end
   end
@@ -54,15 +50,15 @@ class LuzView <  OSX::NSView
     CGContextDrawPath(context, KCGPathFill)   
     CGContextRestoreGState(context)
   end
-
+  
   def fake_rect
     rect = @rect.clone
-    rect.y += @radius*2 + OFFSET*4
+    rect.origin.y += @radius*2 + OFFSET*4
     rect
   end
-
+  
   def light_bounds
     NSInsetRect(@rect, -OFFSET*2, -OFFSET*2)
   end
-
+  
 end
