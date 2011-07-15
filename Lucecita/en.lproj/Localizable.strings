@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Lucecita
+
+  Created by Juan Germán Castañeda Echevarría on 7/13/11.
+  Copyright 2011 UNAM. All rights reserved.
+*/
+"DISABLE" = "Disable";
+"ENABLE" = "Enable";

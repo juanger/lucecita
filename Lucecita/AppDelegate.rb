@@ -7,7 +7,8 @@
 #
 
 class AppDelegate
-  attr_accessor :window
+  attr_accessor :lightController
+  
   def applicationDidFinishLaunching(a_notification)
     # Insert code here to initialize your application
   end

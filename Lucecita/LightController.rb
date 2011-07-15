@@ -10,26 +10,30 @@ class LightController
   
   attr_writer :light_view
   attr_writer :menu, :enabled
-  attr_accessor :alpha, :alpha_lbl, :size, :size_lbl, :blur, :blur_lbl
+  attr_accessor :alpha, :alpha_lbl 
+  attr_accessor :size, :size_lbl
+  attr_accessor :blur, :blur_lbl
+  attr_accessor :hotkeyControl
   
   def awakeFromNib
     activateStatusMenu()
-    @callback = Proc.new { |p,t,e,r|
-      # Activate it on Control-MouseButon3
-      if (t == KCGEventOtherMouseDown &&
-          CGEventGetFlags(e) & KCGEventFlagMaskControl == KCGEventFlagMaskControl)
+    updateHotkeys()
+    @callback = lambda do |p,t,e,r|
+      # Activate it with hotkey
+      if (t == KCGEventKeyDown && eventIsHotKey?(e))
         toggle(self)
-        return
+        return nil
+      else
+        if @light_view.enabled
+          # Only redraw the light with a little margin, not all the screen
+          # because it is very slow
+          @light_view.setNeedsDisplayInRect @light_view.light_bounds
+          # all the screen would be done with:
+          # @light_view.setNeedsDisplay true
+        end
       end
-      if @light_view.enabled
-        # Only redraw the light with a little margin, not all the screen
-        # because it is very slow
-        @light_view.setNeedsDisplayInRect @light_view.light_bounds
-        # all the screen would be done with:
-        # @light_view.setNeedsDisplay true
-      end
-      e 
-    }
+      return e
+    end
     start_tapping()
   end
   
@@ -57,7 +61,7 @@ class LightController
   
   def toggle(sender)
     @light_view.enabled = !@light_view.enabled
-    @enabled.setState(@light_view.enabled ? 1 : 0)
+    @enabled.setTitle(@light_view.enabled ? NSLocalizedString("DISABLE") : NSLocalizedString("ENABLE"))
     @light_view.setNeedsDisplay true
   end
   
@@ -69,8 +73,32 @@ class LightController
     statusItem.setMenu @menu
   end
   
+  def updateHotkeys
+    userDefaults = NSUserDefaults.standardUserDefaults;
+    
+	  @code = userDefaults.integerForKey("hotkey-code");
+    @flags = userDefaults.integerForKey("hotkey-flags");
+    hotkeyControl.setValueWithCode(@code, flags:@flags)
+  end
+  
+  def eventIsHotKey?(event)
+    e = NSEvent.eventWithCGEvent(event)
+    return false unless @code && @code == e.keyCode
+    return e.modifierFlags == @flags
+  end
+  
+  def hotkeyControlDidChangeWithCode(theCode, flags:theFlags)
+    @code = theCode
+    @flags = theFlags
+  end
+  
   def start_tapping
-    eventMask = 167772384 # Magic Number: LeftMouseDragged MouseMoved RightMouseDragged OtherMouseDragged OtherMouseDown
+    eventMask = (1 << KCGEventMouseMoved) +
+                (1 << KCGEventLeftMouseDragged) +
+                (1 << KCGEventRightMouseDragged) +
+                (1 << KCGEventOtherMouseDragged) +
+                (1 << KCGEventKeyDown)
+
     eventTap = CGEventTapCreate(KCGSessionEventTap, KCGHeadInsertEventTap,
                                 0, eventMask, @callback, nil)
     eventSrc = CFMachPortCreateRunLoopSource(nil, eventTap, 0)

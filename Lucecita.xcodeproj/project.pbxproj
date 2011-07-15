@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21CFD83C13CB98E8004838D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFD83B13CB98E8004838D9 /* Cocoa.framework */; };
+		21432E7613CE764C0057A8B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21432E7813CE764C0057A8B6 /* Localizable.strings */; };
+		21432E7C13CE7ADF0057A8B6 /* Kernel+Localization.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */; };
+		21CFD83C13CB98E8004838D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFD83B13CB98E8004838D9 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		21CFD83E13CB98E8004838D9 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFD83D13CB98E8004838D9 /* MacRuby.framework */; };
 		21CFD84513CB98E8004838D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21CFD84313CB98E8004838D9 /* InfoPlist.strings */; };
 		21CFD84813CB98E8004838D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21CFD84713CB98E8004838D9 /* main.m */; };
@@ -18,9 +20,14 @@
 		21CFD85E13CB9D99004838D9 /* LightView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21CFD85D13CB9D99004838D9 /* LightView.rb */; };
 		21CFD86013CB9E2C004838D9 /* LightController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21CFD85F13CB9E2C004838D9 /* LightController.rb */; };
 		21CFD86213CBA2F9004838D9 /* Lucecita.png in Resources */ = {isa = PBXBuildFile; fileRef = 21CFD86113CBA2F9004838D9 /* Lucecita.png */; };
+		21E2E51C13CD397E00CAEC47 /* MLHotkeyControl.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21E2E51B13CD397E00CAEC47 /* MLHotkeyControl.rb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21432E7713CE764C0057A8B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		21432E7913CE76620057A8B6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		21432E7A13CE77490057A8B6 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "Kernel+Localization.rb"; sourceTree = "<group>"; };
 		21CFD83713CB98E8004838D9 /* Lucecita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lucecita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CFD83B13CB98E8004838D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		21CFD83D13CB98E8004838D9 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = System/Library/Frameworks/MacRuby.framework; sourceTree = SDKROOT; };
@@ -35,6 +42,9 @@
 		21CFD85D13CB9D99004838D9 /* LightView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = LightView.rb; sourceTree = "<group>"; };
 		21CFD85F13CB9E2C004838D9 /* LightController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = LightController.rb; sourceTree = "<group>"; };
 		21CFD86113CBA2F9004838D9 /* Lucecita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lucecita.png; sourceTree = "<group>"; };
+		21DF013713CFE63D009DC0A4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		21DF013813CFE63D009DC0A4 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
+		21E2E51B13CD397E00CAEC47 /* MLHotkeyControl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLHotkeyControl.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +89,9 @@
 		21CFD84013CB98E8004838D9 /* Lucecita */ = {
 			isa = PBXGroup;
 			children = (
+				21DF013713CFE63D009DC0A4 /* LICENSE */,
+				21DF013813CFE63D009DC0A4 /* README */,
 				21CFD85A13CB99C5004838D9 /* Classes */,
-				21CFD85013CB98E8004838D9 /* AppDelegate.rb */,
 				21CFD84913CB98E8004838D9 /* Resources */,
 				21CFD84D13CB98E8004838D9 /* Other Sources */,
 				21CFD84113CB98E8004838D9 /* Supporting Files */,
@@ -102,8 +113,9 @@
 		21CFD84913CB98E8004838D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				21CFD86113CBA2F9004838D9 /* Lucecita.png */,
 				21CFD84A13CB98E8004838D9 /* MainMenu.xib */,
+				21CFD86113CBA2F9004838D9 /* Lucecita.png */,
+				21432E7813CE764C0057A8B6 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -119,9 +131,12 @@
 		21CFD85A13CB99C5004838D9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				21CFD85013CB98E8004838D9 /* AppDelegate.rb */,
 				21CFD85B13CB99E3004838D9 /* DarkWindow.rb */,
 				21CFD85D13CB9D99004838D9 /* LightView.rb */,
 				21CFD85F13CB9E2C004838D9 /* LightController.rb */,
+				21E2E51B13CD397E00CAEC47 /* MLHotkeyControl.rb */,
+				21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -177,6 +192,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
+				fr,
 			);
 			mainGroup = 21CFD82C13CB98E8004838D9;
 			productRefGroup = 21CFD83813CB98E8004838D9 /* Products */;
@@ -202,6 +219,9 @@
 				21CFD85E13CB9D99004838D9 /* LightView.rb in Resources */,
 				21CFD86013CB9E2C004838D9 /* LightController.rb in Resources */,
 				21CFD86213CBA2F9004838D9 /* Lucecita.png in Resources */,
+				21E2E51C13CD397E00CAEC47 /* MLHotkeyControl.rb in Resources */,
+				21432E7613CE764C0057A8B6 /* Localizable.strings in Resources */,
+				21432E7C13CE7ADF0057A8B6 /* Kernel+Localization.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +239,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		21432E7813CE764C0057A8B6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21432E7713CE764C0057A8B6 /* en */,
+				21432E7913CE76620057A8B6 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		21CFD84313CB98E8004838D9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -231,6 +260,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				21CFD84B13CB98E8004838D9 /* en */,
+				21432E7A13CE77490057A8B6 /* es */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -241,7 +271,7 @@
 		21CFD85213CB98E8004838D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -259,7 +289,7 @@
 		21CFD85313CB98E8004838D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -274,7 +304,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
@@ -290,8 +325,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -333,6 +373,7 @@
 				21CFD85613CB98E8004838D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21CFD85713CB98E8004838D9 /* Build configuration list for PBXLegacyTarget "Deployment" */ = {
 			isa = XCConfigurationList;
@@ -341,6 +382,7 @@
 				21CFD85913CB98E8004838D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
