@@ -3,12 +3,12 @@
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 7/21/08.
-#  Copyright (c) 2008-2010 UNAM. All rights reserved.
+#  Copyright (c) 2008-2011 MonsterLabs. All rights reserved.
 #
 
 class LightController
   
-  attr_writer :light_view
+  attr_writer :light_view, :window
   attr_writer :menu, :enabled
   attr_accessor :alpha, :alpha_lbl 
   attr_accessor :size, :size_lbl
@@ -16,17 +16,29 @@ class LightController
   attr_accessor :hotkeyControl
   
   def awakeFromNib
+    @on_icon = NSImage.alloc.initWithContentsOfFile("#{NSBundle.mainBundle.resourcePath}/Lucecita.png")
+    @off_icon = NSImage.alloc.initWithContentsOfFile("#{NSBundle.mainBundle.resourcePath}/Lucecita-Off.png")
+    
+    getUserDefaults()
     activateStatusMenu()
     updateHotkeys()
     @callback = lambda do |p,t,e,r|
       # Activate it with hotkey
       if (t == KCGEventKeyDown && eventIsHotKey?(e))
         toggle(self)
+        location = @window.mouseLocationOutsideOfEventStream
+        @light_view.center = location
         return nil
       else
+        if (t == KCGEventTapDisabledByTimeout)
+          CGEventTapEnable(@eventTap, true)
+          return e
+        end
         if @light_view.enabled
           # Only redraw the light with a little margin, not all the screen
           # because it is very slow
+          location = @window.mouseLocationOutsideOfEventStream
+          @light_view.center = location
           @light_view.setNeedsDisplayInRect @light_view.light_bounds
           # all the screen would be done with:
           # @light_view.setNeedsDisplay true
@@ -63,20 +75,37 @@ class LightController
     @light_view.enabled = !@light_view.enabled
     @enabled.setTitle(@light_view.enabled ? NSLocalizedString("DISABLE") : NSLocalizedString("ENABLE"))
     @light_view.setNeedsDisplay true
+    icon = nil
+    if @light_view.enabled
+      @statusItem.setImage @on_icon
+    else
+      @statusItem.setImage @off_icon
+    end
   end
   
   def activateStatusMenu()
-    statusItem = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
-    icon = NSImage.alloc.initWithContentsOfFile("#{NSBundle.mainBundle.resourcePath}/Lucecita.png")
-    statusItem.setImage icon
-    statusItem.setHighlightMode true
-    statusItem.setMenu @menu
+    @statusItem = NSStatusBar.systemStatusBar.statusItemWithLength(NSVariableStatusItemLength)
+    @statusItem.setImage @off_icon
+    @statusItem.setHighlightMode true
+    @statusItem.setMenu @menu
+  end
+  
+  def getUserDefaults()
+    userDefaults = NSUserDefaults.standardUserDefaults
+    
+    @size.setFloatValue(userDefaults.objectForKey("Size") || 70)
+    @alpha.setFloatValue(userDefaults.objectForKey("Alpha") || 0.5)
+    @blur.setFloatValue(userDefaults.objectForKey("Blur") || 20)
+    
+    @light_view.radius = @size.floatValue();
+    @light_view.transparency = @alpha.floatValue();
+    @light_view.blur = @blur.floatValue();
   end
   
   def updateHotkeys
     userDefaults = NSUserDefaults.standardUserDefaults;
     
-	  @code = userDefaults.integerForKey("hotkey-code");
+	  @code = userDefaults.objectForKey("hotkey-code");
     @flags = userDefaults.integerForKey("hotkey-flags");
     hotkeyControl.setValueWithCode(@code, flags:@flags)
   end
@@ -99,16 +128,19 @@ class LightController
                 (1 << KCGEventOtherMouseDragged) +
                 (1 << KCGEventKeyDown)
 
-    eventTap = CGEventTapCreate(KCGSessionEventTap, KCGHeadInsertEventTap,
+    @eventTap = CGEventTapCreate(KCGSessionEventTap, KCGHeadInsertEventTap,
                                 0, eventMask, @callback, nil)
-    eventSrc = CFMachPortCreateRunLoopSource(nil, eventTap, 0)
-    CFRelease(eventTap)
-    CFRunLoopAddSource(CFRunLoopGetCurrent(),  eventSrc, KCFRunLoopCommonModes)
-    CFRelease(eventSrc)
+    @eventSrc = CFMachPortCreateRunLoopSource(nil, @eventTap, 0)
+    CGEventTapEnable(@eventTap, true);
+    CFRunLoopAddSource(CFRunLoopGetCurrent(),  @eventSrc, KCFRunLoopCommonModes)
   end
   
-  def applicationShouldTerminate
-    CFRunLoopRemoveSource(CFRunLoopGetCurrent(), mEventSrc, KCFRunLoopCommonModes)
+  def applicationWillTerminate
+    CFRunLoopRemoveSource(CFRunLoopGetCurrent(), @eventSrc, KCFRunLoopCommonModes)
+    userDefaults = NSUserDefaults.standardUserDefaults
+    userDefaults.setFloat(@alpha.floatValue, forKey:"Alpha")
+    userDefaults.setFloat(@size.floatValue, forKey:"Size")
+    userDefaults.setFloat(@blur.floatValue, forKey:"Blur")
   end
   
 end

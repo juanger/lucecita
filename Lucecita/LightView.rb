@@ -3,7 +3,7 @@
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 7/19/08.
-#  Copyright (c) 2008-2010 UNAM. All rights reserved.
+#  Copyright (c) 2008-2011 MonsterLabs. All rights reserved.
 #
 
 class LightView <  NSView
@@ -13,10 +13,8 @@ class LightView <  NSView
   OFFSET = 25.0
   
   def awakeFromNib
-    @radius = 70
-    @transparency = 0.5
-    @blur = 20
     @enabled = false
+    @center = NSEvent.mouseLocation
   end
   
   def drawRect(rect)
@@ -26,10 +24,12 @@ class LightView <  NSView
       CGContextFillRect(context, rect)
       CGContextSetBlendMode(context, KCGBlendModeSourceOut)
       
-      @center = NSEvent.mouseLocation
       # Get the area where the light will be drawn
-      @rect = NSMakeRect(@center.x - @radius, @center.y - @radius, @radius*2, @radius*2) 
-      drawLight
+      rect = NSMakeRect(@center.x - @radius, @center.y - @radius, @radius*2, @radius*2) 
+      if NSIntersectsRect(rect, self.frame)
+        @rect = rect
+        drawLight
+      end
     end
   end
   
@@ -51,6 +51,8 @@ class LightView <  NSView
     CGContextRestoreGState(context)
   end
   
+  # This is the rect where the ellipse is drawn, although
+  # only its whadow is shown to the user
   def fake_rect
     rect = @rect.clone
     rect.origin.y += @radius*2 + OFFSET*4
