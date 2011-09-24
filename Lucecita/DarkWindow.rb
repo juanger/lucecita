@@ -3,7 +3,7 @@
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 7/19/08.
-#  Copyright (c) 2008-2010 UNAM. All rights reserved.
+#  Copyright (c) 2008-2010 MonsterLabs. All rights reserved.
 #
 
 class DarkWindow < NSWindow
@@ -24,5 +24,17 @@ class DarkWindow < NSWindow
     
     result
   end
-  
+
+  def constrainFrameRect(frameRect, toScreen:screen)
+    #return the unaltered frame, or do some other interesting things
+    return frameRect
+  end
+
+  private
+
+  def allScreensRect
+    NSScreen.screens.inject(NSMakeRect(0,0,0,0)) do  |r,s|
+      r = NSUnionRect(r, s.frame)
+    end
+  end
 end
