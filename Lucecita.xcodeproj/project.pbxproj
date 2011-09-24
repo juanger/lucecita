@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		213E1A1C142E3B8F009663F1 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213E1A1B142E3B8F009663F1 /* Preferences.xib */; };
+		213E1A1E142E700E009663F1 /* MLHotkeyTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 213E1A1D142E700E009663F1 /* MLHotkeyTransformer.rb */; };
 		21432E7613CE764C0057A8B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21432E7813CE764C0057A8B6 /* Localizable.strings */; };
 		21432E7C13CE7ADF0057A8B6 /* Kernel+Localization.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */; };
 		21512DD71426FB7C00D6B97B /* Lucecita-Off.png in Resources */ = {isa = PBXBuildFile; fileRef = 21512DD61426FB7C00D6B97B /* Lucecita-Off.png */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		213E1A1B142E3B8F009663F1 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		213E1A1D142E700E009663F1 /* MLHotkeyTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLHotkeyTransformer.rb; sourceTree = "<group>"; };
 		21432E7713CE764C0057A8B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21432E7913CE76620057A8B6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21432E7A13CE77490057A8B6 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				21CFD86113CBA2F9004838D9 /* Lucecita.png */,
 				21512DD61426FB7C00D6B97B /* Lucecita-Off.png */,
 				21432E7813CE764C0057A8B6 /* Localizable.strings */,
+				213E1A1B142E3B8F009663F1 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				21CFD85D13CB9D99004838D9 /* LightView.rb */,
 				21CFD85F13CB9E2C004838D9 /* LightController.rb */,
 				21E2E51B13CD397E00CAEC47 /* MLHotkeyControl.rb */,
+				213E1A1D142E700E009663F1 /* MLHotkeyTransformer.rb */,
 				21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */,
 			);
 			name = Classes;
@@ -226,6 +232,8 @@
 				21432E7613CE764C0057A8B6 /* Localizable.strings in Resources */,
 				21432E7C13CE7ADF0057A8B6 /* Kernel+Localization.rb in Resources */,
 				21512DD71426FB7C00D6B97B /* Lucecita-Off.png in Resources */,
+				213E1A1C142E3B8F009663F1 /* Preferences.xib in Resources */,
+				213E1A1E142E700E009663F1 /* MLHotkeyTransformer.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,13 +8,15 @@
 
 class LightView <  NSView
   
-  attr_accessor :center, :rect, :radius, :blur
-  attr_accessor :transparency, :enabled
   OFFSET = 25.0
+  
+  attr_accessor :center, :rect, :enabled
+  attr_accessor :transparency, :radius, :blur
   
   def awakeFromNib
     @enabled = false
     @center = NSEvent.mouseLocation
+    bindDefaults
   end
   
   def drawRect(rect)
@@ -32,7 +34,13 @@ class LightView <  NSView
       end
     end
   end
-  
+
+  def light_bounds
+    NSInsetRect(@rect, -OFFSET*2, -OFFSET*2)
+  end
+
+private
+
   def drawLight
     context = NSGraphicsContext.currentContext.graphicsPort
     CGContextSetGrayStrokeColor(context, 0, 1)
@@ -59,8 +67,21 @@ class LightView <  NSView
     rect
   end
   
-  def light_bounds
-    NSInsetRect(@rect, -OFFSET*2, -OFFSET*2)
+  def bindDefaults
+    userDefaults = NSUserDefaultsController.sharedUserDefaultsController
+    self.bind("transparency", toObject: userDefaults,
+              withKeyPath: "values.Alpha",
+              options: { NSContinuouslyUpdatesValue: true })
+    self.bind("blur", toObject: userDefaults,
+              withKeyPath: "values.Blur",
+              options: { 
+              NSContinuouslyUpdatesValue: 1, 
+              })
+    self.bind("radius", toObject: userDefaults,
+              withKeyPath: "values.Size",
+              options: { 
+              NSContinuouslyUpdatesValue: 1, 
+              })
   end
   
 end

@@ -10,18 +10,15 @@ class LightController
   
   attr_writer :light_view, :window
   attr_writer :menu, :enabled
-  attr_accessor :alpha, :alpha_lbl 
-  attr_accessor :size, :size_lbl
-  attr_accessor :blur, :blur_lbl
-  attr_accessor :hotkeyControl
+  
+  attr_accessor :code, :flags
   
   def awakeFromNib
     @on_icon = NSImage.alloc.initWithContentsOfFile("#{NSBundle.mainBundle.resourcePath}/Lucecita.png")
     @off_icon = NSImage.alloc.initWithContentsOfFile("#{NSBundle.mainBundle.resourcePath}/Lucecita-Off.png")
     
-    getUserDefaults()
     activateStatusMenu()
-    updateHotkeys()
+    bindDefaults()
     @callback = lambda do |p,t,e,r|
       # Activate it with hotkey
       if (t == KCGEventKeyDown && eventIsHotKey?(e))
@@ -49,27 +46,6 @@ class LightController
     start_tapping()
   end
   
-  def change_alpha(sender)
-    @light_view.transparency = @alpha.floatValue
-    @alpha_lbl.setStringValue "#{(@alpha.floatValue*100).to_i}%"
-    @light_view.setNeedsDisplay true
-  end
-  
-  def change_size(sender)
-    @light_view.radius = @size.floatValue
-    @size_lbl.setStringValue "#{(@size.intValue)} px"
-    @light_view.setNeedsDisplay true
-  end
-  
-  def change_blur(sender)
-    if @size.floatValue < 50
-      @light_view.blur = @blur.floatValue
-      else
-      @light_view.blur = @blur.floatValue/2
-    end
-    @blur_lbl.setStringValue "#{(@blur.intValue)} %"
-    @light_view.setNeedsDisplay true
-  end
   
   def toggle(sender)
     @light_view.enabled = !@light_view.enabled
@@ -90,35 +66,45 @@ class LightController
     @statusItem.setMenu @menu
   end
   
-  def getUserDefaults()
-    userDefaults = NSUserDefaults.standardUserDefaults
-    
-    @size.setFloatValue(userDefaults.objectForKey("Size") || 70)
-    @alpha.setFloatValue(userDefaults.objectForKey("Alpha") || 0.5)
-    @blur.setFloatValue(userDefaults.objectForKey("Blur") || 20)
-    
-    @light_view.radius = @size.floatValue();
-    @light_view.transparency = @alpha.floatValue();
-    @light_view.blur = @blur.floatValue();
+  def applicationWillTerminate
+    CFRunLoopRemoveSource(CFRunLoopGetCurrent(), @eventSrc, KCFRunLoopCommonModes)
   end
   
-  def updateHotkeys
-    userDefaults = NSUserDefaults.standardUserDefaults;
-    
-	  @code = userDefaults.objectForKey("hotkey-code");
-    @flags = userDefaults.integerForKey("hotkey-flags");
-    hotkeyControl.setValueWithCode(@code, flags:@flags)
+  def showPreferences(sender)
+    prefsController = NSWindowController.alloc.initWithWindowNibName "Preferences"
+    prefsController.window.makeKeyAndOrderFront nil
+    NSApplication.sharedApplication.arrangeInFront nil
   end
   
+private
+
+  def bindDefaults
+    userDefaults = NSUserDefaultsController.sharedUserDefaultsController
+    self.bind("code", toObject: userDefaults,
+                   withKeyPath: "values.hotkey-code",
+                       options: { NSContinuouslyUpdatesValue: true })
+    @enabled.bind("keyEquivalent", toObject: userDefaults,
+              withKeyPath: "values.hotkey-code",
+              options: { 
+                  NSContinuouslyUpdatesValue: true, 
+                  NSValueTransformerName: "MLHotkeyTransformer"
+              })
+    self.bind("flags", toObject: userDefaults,
+              withKeyPath: "values.hotkey-flags",
+              options: { 
+                  NSContinuouslyUpdatesValue: 1, 
+              })
+    @enabled.bind("keyEquivalentModifierMask", toObject: userDefaults,
+              withKeyPath: "values.hotkey-flags",
+              options: { 
+                  NSContinuouslyUpdatesValue: 1, 
+              })
+  end
+    
   def eventIsHotKey?(event)
     e = NSEvent.eventWithCGEvent(event)
     return false unless @code && @code == e.keyCode
     return e.modifierFlags == @flags
-  end
-  
-  def hotkeyControlDidChangeWithCode(theCode, flags:theFlags)
-    @code = theCode
-    @flags = theFlags
   end
   
   def start_tapping
@@ -135,12 +121,5 @@ class LightController
     CFRunLoopAddSource(CFRunLoopGetCurrent(),  @eventSrc, KCFRunLoopCommonModes)
   end
   
-  def applicationWillTerminate
-    CFRunLoopRemoveSource(CFRunLoopGetCurrent(), @eventSrc, KCFRunLoopCommonModes)
-    userDefaults = NSUserDefaults.standardUserDefaults
-    userDefaults.setFloat(@alpha.floatValue, forKey:"Alpha")
-    userDefaults.setFloat(@size.floatValue, forKey:"Size")
-    userDefaults.setFloat(@blur.floatValue, forKey:"Blur")
-  end
   
 end
