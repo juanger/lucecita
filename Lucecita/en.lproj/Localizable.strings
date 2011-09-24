@@ -7,3 +7,5 @@
 */
 "DISABLE" = "Disable";
 "ENABLE" = "Enable";
+"CLICK_TO_CHANGE" = "Click to change";
+"TYPE_SHORTCUT" = "Type shortcut";

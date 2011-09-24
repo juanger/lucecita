@@ -7,3 +7,5 @@
 */
 "DISABLE" = "Desactivar";
 "ENABLE" = "Activar";
+"CLICK_TO_CHANGE" = "Da click para cambiar";
+"TYPE_SHORTCUT" = "Escribe el atajo";

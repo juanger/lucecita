@@ -3,7 +3,7 @@
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 7/12/11.
-#  Copyright 2011 UNAM. All rights reserved.
+#  Copyright 2011 MonsterLabs. All rights reserved.
 #
 
 class MLHotkeyControl < NSControl
@@ -27,7 +27,7 @@ class MLHotkeyControl < NSControl
   def awakeFromNib
     userDefaults = NSUserDefaults.standardUserDefaults;
     
-	  code = userDefaults.integerForKey("hotkey-code");
+	  code = userDefaults.objectForKey("hotkey-code");
     flags = userDefaults.integerForKey("hotkey-flags");
     setValueWithCode(code, flags:flags)
   end
@@ -52,14 +52,25 @@ class MLHotkeyControl < NSControl
     return true;
   end
   
+  def becomeFirstResponder
+    @label.setStringValue(NSLocalizedString("TYPE_SHORTCUT"))
+    @delegate.hotkeyControlDidChangeWithCode(nil, flags:nil) if @delegate
+    return true;
+  end
+  
   def setValueWithCode(theCode, flags:theFlags)
     if theCode
       @label.setStringValue(modifierCharacters(theFlags) + KEYCODES[theCode])
     else
-      @label.setStringValue("")
+      @label.setStringValue(NSLocalizedString("CLICK_TO_CHANGE"))
     end
     
     @delegate.hotkeyControlDidChangeWithCode(theCode, flags:theFlags) if @delegate
+  end
+  
+  def deleteShortcut(sender)
+    @label.setStringValue(NSLocalizedString("TYPE_SHORTCUT"))
+    @delegate.hotkeyControlDidChangeWithCode(nil, flags:nil) if @delegate
   end
   
   private

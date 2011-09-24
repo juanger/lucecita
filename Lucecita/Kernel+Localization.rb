@@ -3,7 +3,7 @@
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 7/13/11.
-#  Copyright 2011 UNAM. All rights reserved.
+#  Copyright 2011 MonsterLabs. All rights reserved.
 #
 module Kernel
   private
