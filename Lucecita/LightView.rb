@@ -11,7 +11,8 @@ class LightView <  NSView
   OFFSET = 25.0
   
   attr_accessor :center, :rect, :enabled
-  attr_accessor :transparency, :radius, :blur
+  attr_accessor :radius, :blur
+  attr_reader :transparency
   
   def awakeFromNib
     @enabled = false
@@ -84,4 +85,8 @@ private
               })
   end
   
+  def setTransparency(value)
+    @transparency = value
+    setNeedsDisplay(self)
+  end
 end

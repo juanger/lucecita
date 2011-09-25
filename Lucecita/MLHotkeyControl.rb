@@ -6,7 +6,7 @@
 #  Copyright 2011 MonsterLabs. All rights reserved.
 #
 
-class MLHotkeyControl < NSControl
+class MLHotkeyControl < NSView
   
   attr_writer :label
   attr_writer :delegate
@@ -24,28 +24,58 @@ class MLHotkeyControl < NSControl
     0x2a => "\\"
   }
   
+  def initWithFrame(frame)
+    result = super(frame)
+    @label = NSTextField.alloc.initWithFrame(NSMakeRect(2, 2, CGRectGetWidth(frame)-4, CGRectGetHeight(frame)-4))
+    @label.alignment =  NSCenterTextAlignment
+    @label.editable = false
+    @label.selectable = false
+    self.addSubview(@label)
+    button = NSButton.alloc.initWithFrame(NSMakeRect(CGRectGetWidth(frame)-18, CGRectGetHeight(frame)-18, 12, 15));
+    button.setTitle("")
+    image = NSImage.imageNamed(NSImageNameStopProgressFreestandingTemplate)
+    image.setTemplate(true)
+    button.setImage(image)
+    button.setImageScaling(NSImageScaleProportionallyDown)
+    button.setTarget(self)
+    button.setAction(:deleteShortcut)
+    button.setBezelStyle(NSSmallSquareBezelStyle)
+    button.setBordered(false)
+    self.addSubview(button)
+    @recording = false
+    return result
+  end
+
   def awakeFromNib
     userDefaults = NSUserDefaults.standardUserDefaults;
-    
-	  code = userDefaults.objectForKey("hotkey-code");
-    flags = userDefaults.integerForKey("hotkey-flags");
+
+    code = userDefaults.objectForKey("hotkey-code")
+    flags = userDefaults.integerForKey("hotkey-flags")
     setValueWithCode(code, flags:flags)
   end
   
   def keyDown(event)
-    code = event.keyCode;
-	  flags = event.modifierFlags;
+    if @recording
+      code = event.keyCode;
+      flags = event.modifierFlags;
+
+      userDefaults = NSUserDefaults.standardUserDefaults
     
-    userDefaults = NSUserDefaults.standardUserDefaults;
-    
-	  userDefaults.setInteger(code, forKey:"hotkey-code");
-    userDefaults.setInteger(flags, forKey:"hotkey-flags");
-    
-    setValueWithCode(code, flags:flags)
+      userDefaults.setInteger(code, forKey:"hotkey-code")
+      userDefaults.setInteger(flags, forKey:"hotkey-flags")
+      setValueWithCode(code, flags:flags)
+      self.window.makeFirstResponder(self.window)
+      @recording = false
+    end
+  end
+  
+  def mouseDown(event)
+    @recording = true
+    self.window.makeFirstResponder(self)
   end
   
   def acceptsFirstResponder
-    return true;
+    return @recording;
   end
   
   def acceptsFirstMouse(theEvent)
@@ -58,37 +88,48 @@ class MLHotkeyControl < NSControl
     return true;
   end
   
-  def setValueWithCode(theCode, flags:theFlags)
-    if theCode
-      @label.setStringValue(modifierCharacters(theFlags) + KEYCODES[theCode])
-    else
-      @label.setStringValue(NSLocalizedString("CLICK_TO_CHANGE"))
-    end
+  def resignFirstResponder
+    userDefaults = NSUserDefaults.standardUserDefaults;
     
-    @delegate.hotkeyControlDidChangeWithCode(theCode, flags:theFlags) if @delegate
+	  code = userDefaults.objectForKey("hotkey-code")
+    flags = userDefaults.integerForKey("hotkey-flags")
+    setValueWithCode(code, flags:flags)
+    return true;
   end
   
-  def deleteShortcut(sender)
+  def deleteShortcut
     @label.setStringValue(NSLocalizedString("TYPE_SHORTCUT"))
     @delegate.hotkeyControlDidChangeWithCode(nil, flags:nil) if @delegate
+    @recording = true
+    self.window.makeFirstResponder(self)
   end
   
-  private
+private
   
   def modifierCharacters(flags)
     chars = ""
     if flags & NSControlKeyMask == NSControlKeyMask
-      chars += "^ "
+      chars += "^"
     end
     if flags & NSAlternateKeyMask == NSAlternateKeyMask
-      chars += "⌥ "
+      chars += "⌥"
     end
     if flags & NSShiftKeyMask == NSShiftKeyMask
-      chars += "⇧ "
+      chars += "⇧"
     end
     if flags & NSCommandKeyMask == NSCommandKeyMask
-      chars += "⌘ "
+      chars += "⌘"
     end
     return chars
+  end
+  
+  def setValueWithCode(theCode, flags:theFlags)
+    if theCode
+      @label.setStringValue(modifierCharacters(theFlags) + KEYCODES[theCode])
+      else
+      @label.setStringValue(NSLocalizedString("CLICK_TO_CHANGE"))
+    end
+    
+    @delegate.hotkeyControlDidChangeWithCode(theCode, flags:theFlags) if @delegate
   end
 end

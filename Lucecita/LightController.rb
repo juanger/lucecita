@@ -71,8 +71,8 @@ class LightController
   end
   
   def showPreferences(sender)
-    prefsController = NSWindowController.alloc.initWithWindowNibName "Preferences"
-    prefsController.window.makeKeyAndOrderFront nil
+    @prefsController ||= NSWindowController.alloc.initWithWindowNibName "Preferences"
+    @prefsController.window.makeKeyAndOrderFront nil
     NSApplication.sharedApplication.arrangeInFront nil
   end
   
@@ -82,23 +82,21 @@ private
     userDefaults = NSUserDefaultsController.sharedUserDefaultsController
     self.bind("code", toObject: userDefaults,
                    withKeyPath: "values.hotkey-code",
-                       options: { NSContinuouslyUpdatesValue: true })
-    @enabled.bind("keyEquivalent", toObject: userDefaults,
-              withKeyPath: "values.hotkey-code",
-              options: { 
-                  NSContinuouslyUpdatesValue: true, 
-                  NSValueTransformerName: "MLHotkeyTransformer"
-              })
+                       options: { NSContinuouslyUpdatesValue: 1 })
     self.bind("flags", toObject: userDefaults,
               withKeyPath: "values.hotkey-flags",
               options: { 
-                  NSContinuouslyUpdatesValue: 1, 
+                  NSContinuouslyUpdatesValue: 1
               })
+    @enabled.bind("keyEquivalent", toObject: userDefaults,
+                  withKeyPath: "values.hotkey-code",
+                  options: { 
+                    NSValueTransformer: MLHotkeyTransformer.new,
+                    NSContinuouslyUpdatesValue: 1
+                  })
     @enabled.bind("keyEquivalentModifierMask", toObject: userDefaults,
               withKeyPath: "values.hotkey-flags",
-              options: { 
-                  NSContinuouslyUpdatesValue: 1, 
-              })
+              options: { NSContinuouslyUpdatesValue: 1 })
   end
     
   def eventIsHotKey?(event)
