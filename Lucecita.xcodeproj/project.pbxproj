@@ -12,6 +12,9 @@
 		21432E7613CE764C0057A8B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21432E7813CE764C0057A8B6 /* Localizable.strings */; };
 		21432E7C13CE7ADF0057A8B6 /* Kernel+Localization.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */; };
 		21512DD71426FB7C00D6B97B /* Lucecita-Off.png in Resources */ = {isa = PBXBuildFile; fileRef = 21512DD61426FB7C00D6B97B /* Lucecita-Off.png */; };
+		2158D55D142FCE5A00B5302A /* MLPixelValueTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 2158D55C142FCE5A00B5302A /* MLPixelValueTransformer.rb */; };
+		2158D560142FCEBC00B5302A /* MLRoundValueTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 2158D55F142FCEBC00B5302A /* MLRoundValueTransformer.rb */; };
+		218E9B46142EF65800263745 /* MLPercentageTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 218E9B45142EF65800263745 /* MLPercentageTransformer.rb */; };
 		21CFD83C13CB98E8004838D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFD83B13CB98E8004838D9 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		21CFD84513CB98E8004838D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21CFD84313CB98E8004838D9 /* InfoPlist.strings */; };
 		21CFD84813CB98E8004838D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21CFD84713CB98E8004838D9 /* main.m */; };
@@ -34,6 +37,9 @@
 		21432E7A13CE77490057A8B6 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = "Kernel+Localization.rb"; sourceTree = "<group>"; };
 		21512DD61426FB7C00D6B97B /* Lucecita-Off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lucecita-Off.png"; sourceTree = "<group>"; };
+		2158D55C142FCE5A00B5302A /* MLPixelValueTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLPixelValueTransformer.rb; sourceTree = "<group>"; };
+		2158D55F142FCEBC00B5302A /* MLRoundValueTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLRoundValueTransformer.rb; sourceTree = "<group>"; };
+		218E9B45142EF65800263745 /* MLPercentageTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLPercentageTransformer.rb; sourceTree = "<group>"; };
 		21CFD83713CB98E8004838D9 /* Lucecita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lucecita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CFD83B13CB98E8004838D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		21CFD84213CB98E8004838D9 /* Lucecita-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Lucecita-Info.plist"; sourceTree = "<group>"; };
@@ -145,6 +151,9 @@
 				21CFD85F13CB9E2C004838D9 /* LightController.rb */,
 				21E2E51B13CD397E00CAEC47 /* MLHotkeyControl.rb */,
 				213E1A1D142E700E009663F1 /* MLHotkeyTransformer.rb */,
+				218E9B45142EF65800263745 /* MLPercentageTransformer.rb */,
+				2158D55C142FCE5A00B5302A /* MLPixelValueTransformer.rb */,
+				2158D55F142FCEBC00B5302A /* MLRoundValueTransformer.rb */,
 				21432E7B13CE7ADF0057A8B6 /* Kernel+Localization.rb */,
 			);
 			name = Classes;
@@ -234,6 +243,9 @@
 				21512DD71426FB7C00D6B97B /* Lucecita-Off.png in Resources */,
 				213E1A1C142E3B8F009663F1 /* Preferences.xib in Resources */,
 				213E1A1E142E700E009663F1 /* MLHotkeyTransformer.rb in Resources */,
+				218E9B46142EF65800263745 /* MLPercentageTransformer.rb in Resources */,
+				2158D55D142FCE5A00B5302A /* MLPixelValueTransformer.rb in Resources */,
+				2158D560142FCEBC00B5302A /* MLRoundValueTransformer.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
