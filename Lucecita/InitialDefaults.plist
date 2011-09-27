@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Alpha</key>
+	<real>0.68</real>
+	<key>Blur</key>
+	<integer>34</integer>
+	<key>Size</key>
+	<integer>70</integer>
+	<key>hotkey-code</key>
+	<integer>37</integer>
+	<key>hotkey-flags</key>
+	<integer>262401</integer>
+</dict>
+</plist>

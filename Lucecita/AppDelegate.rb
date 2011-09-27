@@ -27,10 +27,11 @@ class AppDelegate
       end
     end
     
-    NSScreen.screens.each do |s|
-      # DarkWindow.alloc.initWithContentRect
-    end
+    userDefaultsValuesPath = NSBundle.mainBundle.pathForResource("InitialDefaults",
+                                                                 ofType:"plist")
+    userDefaultsValuesDict = NSDictionary.dictionaryWithContentsOfFile(userDefaultsValuesPath)
     
+    NSUserDefaults.standardUserDefaults.registerDefaults(userDefaultsValuesDict)
   end
   
   def applicationWillTerminate(a_notification)
