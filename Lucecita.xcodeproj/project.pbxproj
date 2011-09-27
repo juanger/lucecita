@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		21051F2E14312A08007E5FBA /* VersionNumberManager */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 21051F2F14312A08007E5FBA /* Build configuration list for PBXAggregateTarget "VersionNumberManager" */;
+			buildPhases = (
+				21051F3214312A0F007E5FBA /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = VersionNumberManager;
+			productName = VersionNumberManager;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		213E1A1C142E3B8F009663F1 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213E1A1B142E3B8F009663F1 /* Preferences.xib */; };
 		213E1A1E142E700E009663F1 /* MLHotkeyTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 213E1A1D142E700E009663F1 /* MLHotkeyTransformer.rb */; };
@@ -14,6 +28,7 @@
 		21512DD71426FB7C00D6B97B /* Lucecita-Off.png in Resources */ = {isa = PBXBuildFile; fileRef = 21512DD61426FB7C00D6B97B /* Lucecita-Off.png */; };
 		2158D55D142FCE5A00B5302A /* MLPixelValueTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 2158D55C142FCE5A00B5302A /* MLPixelValueTransformer.rb */; };
 		2158D560142FCEBC00B5302A /* MLRoundValueTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 2158D55F142FCEBC00B5302A /* MLRoundValueTransformer.rb */; };
+		2158D56714302C2E00B5302A /* InitialDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2158D56614302C2E00B5302A /* InitialDefaults.plist */; };
 		218E9B46142EF65800263745 /* MLPercentageTransformer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 218E9B45142EF65800263745 /* MLPercentageTransformer.rb */; };
 		21CFD83C13CB98E8004838D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CFD83B13CB98E8004838D9 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		21CFD84513CB98E8004838D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21CFD84313CB98E8004838D9 /* InfoPlist.strings */; };
@@ -29,6 +44,23 @@
 		21E2E51C13CD397E00CAEC47 /* MLHotkeyControl.rb in Resources */ = {isa = PBXBuildFile; fileRef = 21E2E51B13CD397E00CAEC47 /* MLHotkeyControl.rb */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		21051F3314312A1F007E5FBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CFD82E13CB98E8004838D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21051F2E14312A08007E5FBA;
+			remoteInfo = VersionNumberManager;
+		};
+		21051F3514312A27007E5FBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21CFD82E13CB98E8004838D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21CFD83613CB98E8004838D9;
+			remoteInfo = Lucecita;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		213E1A1B142E3B8F009663F1 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		213E1A1D142E700E009663F1 /* MLHotkeyTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLHotkeyTransformer.rb; sourceTree = "<group>"; };
@@ -39,6 +71,7 @@
 		21512DD61426FB7C00D6B97B /* Lucecita-Off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lucecita-Off.png"; sourceTree = "<group>"; };
 		2158D55C142FCE5A00B5302A /* MLPixelValueTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLPixelValueTransformer.rb; sourceTree = "<group>"; };
 		2158D55F142FCEBC00B5302A /* MLRoundValueTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLRoundValueTransformer.rb; sourceTree = "<group>"; };
+		2158D56614302C2E00B5302A /* InitialDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitialDefaults.plist; sourceTree = "<group>"; };
 		218E9B45142EF65800263745 /* MLPercentageTransformer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MLPercentageTransformer.rb; sourceTree = "<group>"; };
 		21CFD83713CB98E8004838D9 /* Lucecita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lucecita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CFD83B13CB98E8004838D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -130,6 +163,7 @@
 				21512DD61426FB7C00D6B97B /* Lucecita-Off.png */,
 				21432E7813CE764C0057A8B6 /* Localizable.strings */,
 				213E1A1B142E3B8F009663F1 /* Preferences.xib */,
+				2158D56614302C2E00B5302A /* InitialDefaults.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -171,6 +205,7 @@
 			buildToolPath = /usr/local/bin/macruby_deploy;
 			buildWorkingDirectory = "";
 			dependencies = (
+				21051F3614312A27007E5FBA /* PBXTargetDependency */,
 			);
 			name = Deployment;
 			passBuildSettingsInEnvironment = 1;
@@ -190,6 +225,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				21051F3414312A1F007E5FBA /* PBXTargetDependency */,
 			);
 			name = Lucecita;
 			productName = Lucecita;
@@ -218,6 +254,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				21051F2E14312A08007E5FBA /* VersionNumberManager */,
 				21CFD83613CB98E8004838D9 /* Lucecita */,
 				21CFD83F13CB98E8004838D9 /* Deployment */,
 			);
@@ -246,10 +283,27 @@
 				218E9B46142EF65800263745 /* MLPercentageTransformer.rb in Resources */,
 				2158D55D142FCE5A00B5302A /* MLPixelValueTransformer.rb in Resources */,
 				2158D560142FCEBC00B5302A /* MLRoundValueTransformer.rb in Resources */,
+				2158D56714302C2E00B5302A /* InitialDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21051F3214312A0F007E5FBA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`/usr/bin/env which git`\ntouch Lucecita/Lucecita-Info.plist\nversion=`$git describe --dirty --long`\nGIT_TAG=`echo $version | sed 's/-.*//'`\nGIT_COMMIT=`echo $version | sed 's/[^-]*-//'`\necho \"#define GIT_TAG $GIT_TAG\" > VersionPlist.h\necho \"#define GIT_COMMIT $GIT_COMMIT\" >> VersionPlist.h";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		21CFD83313CB98E8004838D9 /* Sources */ = {
@@ -261,6 +315,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21051F3414312A1F007E5FBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21051F2E14312A08007E5FBA /* VersionNumberManager */;
+			targetProxy = 21051F3314312A1F007E5FBA /* PBXContainerItemProxy */;
+		};
+		21051F3614312A27007E5FBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21CFD83613CB98E8004838D9 /* Lucecita */;
+			targetProxy = 21051F3514312A27007E5FBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		21432E7813CE764C0057A8B6 /* Localizable.strings */ = {
@@ -292,6 +359,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		21051F3014312A08007E5FBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21051F3114312A08007E5FBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		21CFD85213CB98E8004838D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -342,6 +423,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lucecita/Lucecita-Prefix.pch";
 				INFOPLIST_FILE = "Lucecita/Lucecita-Info.plist";
+				INFOPLIST_PREFIX_HEADER = VersionPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -363,6 +446,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lucecita/Lucecita-Prefix.pch";
 				INFOPLIST_FILE = "Lucecita/Lucecita-Info.plist";
+				INFOPLIST_PREFIX_HEADER = VersionPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -383,6 +468,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		21051F2F14312A08007E5FBA /* Build configuration list for PBXAggregateTarget "VersionNumberManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21051F3014312A08007E5FBA /* Debug */,
+				21051F3114312A08007E5FBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		21CFD83113CB98E8004838D9 /* Build configuration list for PBXProject "Lucecita" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
