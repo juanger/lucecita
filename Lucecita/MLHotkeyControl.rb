@@ -49,21 +49,21 @@ class MLHotkeyControl < NSView
   def awakeFromNib
     userDefaults = NSUserDefaults.standardUserDefaults;
 
-    code = userDefaults.objectForKey("hotkey-code")
+    char = userDefaults.objectForKey("hotkey-char")
     flags = userDefaults.integerForKey("hotkey-flags")
-    setValueWithCode(code, flags:flags)
+    setValueWithChar(char, flags:flags)
   end
   
   def keyDown(event)
     if @recording
-      code = event.keyCode;
+      char = event.charactersIgnoringModifiers;
       flags = event.modifierFlags;
 
       userDefaults = NSUserDefaults.standardUserDefaults
     
-      userDefaults.setInteger(code, forKey:"hotkey-code")
+      userDefaults.setObject(char, forKey:"hotkey-char")
       userDefaults.setInteger(flags, forKey:"hotkey-flags")
-      setValueWithCode(code, flags:flags)
+      setValueWithChar(char, flags:flags)
       self.window.makeFirstResponder(self.window)
       @recording = false
     end
@@ -84,22 +84,22 @@ class MLHotkeyControl < NSView
   
   def becomeFirstResponder
     @label.setStringValue(NSLocalizedString("TYPE_SHORTCUT"))
-    @delegate.hotkeyControlDidChangeWithCode(nil, flags:nil) if @delegate
+    @delegate.hotkeyControlDidChangeWithChar(nil, flags:nil) if @delegate
     return true;
   end
   
   def resignFirstResponder
     userDefaults = NSUserDefaults.standardUserDefaults;
     
-	  code = userDefaults.objectForKey("hotkey-code")
+    char = userDefaults.objectForKey("hotkey-char")
     flags = userDefaults.integerForKey("hotkey-flags")
-    setValueWithCode(code, flags:flags)
+    setValueWithChar(char, flags:flags)
     return true;
   end
   
   def deleteShortcut
     @label.setStringValue(NSLocalizedString("TYPE_SHORTCUT"))
-    @delegate.hotkeyControlDidChangeWithCode(nil, flags:nil) if @delegate
+    @delegate.hotkeyControlDidChangeWithChar(nil, flags:nil) if @delegate
     @recording = true
     self.window.makeFirstResponder(self)
   end
@@ -123,13 +123,13 @@ private
     return chars
   end
   
-  def setValueWithCode(theCode, flags:theFlags)
-    if theCode
-      @label.setStringValue(modifierCharacters(theFlags) + KEYCODES[theCode])
-      else
+  def setValueWithChar(theChar, flags:theFlags)
+    if theChar
+      @label.setStringValue(modifierCharacters(theFlags) + theChar.upcase)
+    else
       @label.setStringValue(NSLocalizedString("CLICK_TO_CHANGE"))
     end
     
-    @delegate.hotkeyControlDidChangeWithCode(theCode, flags:theFlags) if @delegate
+    @delegate.hotkeyControlDidChangeWithChar(theChar, flags:theFlags) if @delegate
   end
 end

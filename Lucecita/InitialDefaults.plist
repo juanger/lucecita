@@ -8,8 +8,8 @@
 	<integer>34</integer>
 	<key>Size</key>
 	<integer>70</integer>
-	<key>hotkey-code</key>
-	<integer>37</integer>
+	<key>hotkey-char</key>
+	<string>l</string>
 	<key>hotkey-flags</key>
 	<integer>262401</integer>
 </dict>

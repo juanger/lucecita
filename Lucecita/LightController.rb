@@ -11,7 +11,7 @@ class LightController
   attr_writer :light_view, :window
   attr_writer :menu, :enabled
   
-  attr_accessor :code, :flags
+  attr_accessor :char, :flags
   
   def awakeFromNib
     @on_icon = NSImage.alloc.initWithContentsOfFile("#{NSBundle.mainBundle.resourcePath}/Lucecita.png")
@@ -80,8 +80,8 @@ private
 
   def bindDefaults
     userDefaults = NSUserDefaultsController.sharedUserDefaultsController
-    self.bind("code", toObject: userDefaults,
-                   withKeyPath: "values.hotkey-code",
+    self.bind("char", toObject: userDefaults,
+                   withKeyPath: "values.hotkey-char",
                        options: { NSContinuouslyUpdatesValue: 1 })
     self.bind("flags", toObject: userDefaults,
               withKeyPath: "values.hotkey-flags",
@@ -89,19 +89,19 @@ private
                   NSContinuouslyUpdatesValue: 1
               })
     @enabled.bind("keyEquivalent", toObject: userDefaults,
-                  withKeyPath: "values.hotkey-code",
-                  options: { 
-                    NSValueTransformer: MLHotkeyTransformer.new,
-                    NSContinuouslyUpdatesValue: 1
-                  })
+                  withKeyPath: "values.hotkey-char",
+                  options: {
+                  NSContinuouslyUpdatesValue: 1
+              })
     @enabled.bind("keyEquivalentModifierMask", toObject: userDefaults,
               withKeyPath: "values.hotkey-flags",
               options: { NSContinuouslyUpdatesValue: 1 })
+    puts "Char: #{char.to_s}"
   end
     
   def eventIsHotKey?(event)
     e = NSEvent.eventWithCGEvent(event)
-    return false unless @code && @code == e.keyCode
+    return false unless @char && @char == e.charactersIgnoringModifiers
     return e.modifierFlags == @flags
   end
   

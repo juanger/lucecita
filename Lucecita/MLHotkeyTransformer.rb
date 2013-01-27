@@ -31,10 +31,10 @@ class MLHotkeyTransformer < NSValueTransformer
   end
 
   def transformedValue(value)
-    KEYCODES[value]
+    value.upcase
   end
 
   def reverseTransformedValue(value)
-    KEYCHARS[value]
+    value
   end
 end
