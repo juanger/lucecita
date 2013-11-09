@@ -3,7 +3,7 @@
 #  Lucecita
 #
 #  Created by Juan Germán Castañeda Echevarría on 9/25/11.
-#  Copyright 2011 UNAM. All rights reserved.
+#  Copyright 2013. All rights reserved.
 #
 class MLRoundValueTransformer < NSValueTransformer
   

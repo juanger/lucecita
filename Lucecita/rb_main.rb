@@ -10,6 +10,7 @@
 # do that here too.
 framework 'Cocoa'
 framework 'CoreGraphics'
+framework 'ApplicationServices'
 
 # Loading all the Ruby project files.
 main = File.basename(__FILE__, File.extname(__FILE__))
@@ -20,5 +21,8 @@ Dir.glob(File.join(dir_path, '*.{rb,rbo}')).map { |x| File.basename(x, File.extn
   end
 end
 
+if defined?(KAXTrustedCheckOptionPrompt)
+  AXIsProcessTrusted()
+end
 # Starting the Cocoa main loop.
 NSApplicationMain(0, nil)

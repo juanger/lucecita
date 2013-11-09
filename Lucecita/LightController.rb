@@ -19,6 +19,7 @@ class LightController
     
     activateStatusMenu()
     bindDefaults()
+    
     @callback = lambda do |p,t,e,r|
       # Activate it with hotkey
       if (t == KCGEventKeyDown && eventIsHotKey?(e))
